@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <div class="alert alert-success" role="alert">
+        <h3 style="text-align: center;">Update Profile</h3>
+        <br/>
+        <h2 style="text-align: center;"><b> {{error}}</b></h2>
+    </div>
+    <br>
+<!--    <h1>{{user.email}}</h1>-->
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname"
+                       value="{{user.first_name}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Last Name" name="lastname" value="{{user.last_name}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email Address" name="email"
+                value="{{user.email}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" name="phone" pattern="[0-9]{10}"
+                value="{{user.phone}}">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" placeholder="Date of Birth" name="dob"
+                value="{{user.dob}}">
+            </div>
+            <div class="form-group col-md-6">
+                <p><b>Type</b></p>
+                <select name="Usertype" id="type" value="{{user.type}}" readonly>
+                    {% if user.type == 'Primary' %}
+                    <option value="Primary" selected>Primary</option>
+                    {% else %}
+                    <option value="Secondary">Secondary</option>
+                    {% endif %}
+                </select>
+            </div>
+            <br/>
+            <center><button type="submit" id="btnSubmit" class="btn btn-primary" style="align:center;">Update</button></center>
+        </div>
+    </form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+{% endblock content%}
